@@ -3,8 +3,8 @@ import { CaretRight, DiscordLogo, FileArrowDown, Lightning } from "phosphor-reac
 
 import '@vime/core/themes/default.css';
 import { gql, useQuery } from "@apollo/client";
-// criar componente do link
-// criar spinner no loading do data
+import { MoonLoader, PuffLoader, PulseLoader, ScaleLoader } from "react-spinners";
+import { Link } from "./Link";
 
 const GET_LESSON_BY_SLUG_QUERY = gql`
   query GetLessonBySlug ($slug: String) {
@@ -48,7 +48,9 @@ export function Video(props: VideoProps) {
   if (!data) {
     return (
       <div className="flex-1">
-        <p>Carregando...</p>
+        <div className="h-full flex items-center justify-center">
+          <PulseLoader size={12} color='#E1E1E6' />
+        </div>
       </div>
     )
   }
@@ -93,15 +95,19 @@ export function Video(props: VideoProps) {
           </div>
 
           <div className="flex flex-col gap-4">
-            <a href="#" className="p-4 text-sm bg-green-500 flex items-center rounded font-bold uppercase gap-2 justify-center hover:bg-green-700 transition-colors">
-              <DiscordLogo size={24} />
-              Comunidade do Discord
-            </a>
+            <Link
+              differentProps="bg-green-500"
+              hover="hover:bg-green-700"
+              icon={<DiscordLogo size={24} />}
+              title="Comunidade do Discord"
+            />
 
-            <a href="#" className="p-4 text-sm border border-blue-500 text-blue-500 flex items-center rounded font-bold uppercase gap-2 justify-center hover:bg-blue-500 hover:text-gray-900 transition-colors">
-              <Lightning size={24} />
-              Acesse o desafio
-            </a>
+            <Link
+              differentProps="border border-blue-500 text-blue-500"
+              hover="hover:bg-blue-500 hover:text-gray-900"
+              icon={<Lightning size={24} />}
+              title="Acesse o desafio"
+            />
           </div>
         </div>
 

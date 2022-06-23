@@ -3,8 +3,6 @@ import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 import { Video } from "../components/Video";
 
-// quando a pessoa for pra /event apenas, redirecionar para a primeira aula
-
 export function Event() {
   const {slug} = useParams<{ slug: string }>()
 
